@@ -1,4 +1,4 @@
 class HomeFurniture < ApplicationRecord
-  has_many :player_home
-  has_many :furniture
+  belongs_to :player_home
+  belongs_to :furniture
 end

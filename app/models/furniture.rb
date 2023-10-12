@@ -1,3 +1,3 @@
 class Furniture < ApplicationRecord
-  has_one :home_furniture
+  has_many :player_home, through: :home_furniture
 end
