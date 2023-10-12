@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  variation: MyString
+  pattern: MyString
+  price: 1
+  diy: false
+
+two:
+  name: MyString
+  variation: MyString
+  pattern: MyString
+  price: 1
+  diy: false
