@@ -28,7 +28,7 @@ furnitures.each do |row|
     price:     row["Sell"] == "NA" ? 0 : row["Sell"].to_i,
     diy:       row["DIY"] == "Yes"
   )
-  puts furniture
+  puts furniture.inspect
 end
 
 # Populating Player, PlayerHome, and HomeFurniture tables
