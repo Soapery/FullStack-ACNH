@@ -1,16 +1,16 @@
 require "csv"
 
 # Clearing existing records for re-seeding
-Player.delete_all
+Furniture.delete_all
 PlayerHome.delete_all
 HomeFurniture.delete_all
-Furniture.delete_all
+Player.delete_all
 
 # Resetting PK on tables
+ActiveRecord::Base.connection.execute("DELETE FROM sqlite_sequence WHERE name='furnitures';")
 ActiveRecord::Base.connection.execute("DELETE FROM sqlite_sequence WHERE name='players';")
 ActiveRecord::Base.connection.execute("DELETE FROM sqlite_sequence WHERE name='player_homes';")
 ActiveRecord::Base.connection.execute("DELETE FROM sqlite_sequence WHERE name='home_furnitures';")
-ActiveRecord::Base.connection.execute("DELETE FROM sqlite_sequence WHERE name='furnitures';")
 
 # Retrieving CSV Data
 filename = Rails.root.join("db/housewares.csv")
@@ -28,6 +28,7 @@ furnitures.each do |row|
     price:     row["price"] == "NA" ? 0 : row["price"].to_i,
     diy:       row["DIY"] == "Yes"
   )
+  puts furniture
 end
 
 # Populating Player, PlayerHome, and HomeFurniture tables
