@@ -1,6 +1,6 @@
 class Furniture < ApplicationRecord
-  has_many :player_home, through: :home_furniture
+  has_many :player_homes, through: :home_furniture
 
-  validates :name, :variation, :pattern, :price, :diy, presence: true
+  validates :name, :price, :diy, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 0 }
 end

@@ -1,7 +1,7 @@
 class PlayerHome < ApplicationRecord
   belongs_to :player
   has_many :home_furnitures, dependent: :destroy
-  has_many :furniture, through: :home_furnitures
+  has_many :furnitures, through: :home_furniture
 
   validates :player_id, :size, :home_value, presence: true
   validates :size,
