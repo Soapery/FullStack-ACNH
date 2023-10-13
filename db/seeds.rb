@@ -41,20 +41,23 @@ end
     bells:    Faker::Number.between(from: 1, to: 100_000)
   )
 
-  # Creating PlayerHome through Player
-  player_home = player.player_home.create(
+  player_home = player.build_player_home(
     size:       ["Small", "Medium", "Large"].sample,
     home_value: 0
   )
 
+  player.save
+
   # Populating PlayerHome with furniture
   10.times do
     home_furniture = HomeFurniture.create(
-      home_id:      player_home.id,
-      furniture_id: Furniture.pluck(:id).sample,
-      amount:       rand(1..10) # Set the amount as per your requirement
+      player_home_id: player_home.id,
+      furniture_id:   Furniture.pluck(:id).sample,
+      amount:         rand(1..10)
     )
-    # Update the home_value based on the price of the associated furniture
-    player_home.update(home_value: player_home.home_furnitures.sum(&:furniture_price))
   end
+
+  # Calculate the home_value based on associated furniture prices
+  home_value = player_home.home_furnitures.sum { |home_furniture| home_furniture.furniture.price }
+  player_home.update(home_value:)
 end
