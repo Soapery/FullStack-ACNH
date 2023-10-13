@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_231_012_162_532) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_12_162532) do
   create_table "furnitures", force: :cascade do |t|
     t.string "name", limit: 50
     t.string "variation", limit: 50
@@ -22,15 +22,14 @@ ActiveRecord::Schema[7.0].define(version: 20_231_012_162_532) do
   end
 
   create_table "home_furnitures", force: :cascade do |t|
-    t.integer "home_id", null: false
+    t.integer "player_home_id", null: false
     t.integer "furniture_id", null: false
     t.integer "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["furniture_id"], name: "index_home_furnitures_on_furniture_id"
-    t.index ["home_id", "furniture_id"], name:   "index_home_furnitures_on_home_id_and_furniture_id",
-                                         unique: true
-    t.index ["home_id"], name: "index_home_furnitures_on_home_id"
+    t.index ["player_home_id", "furniture_id"], name: "index_home_furnitures_on_player_home_id_and_furniture_id", unique: true
+    t.index ["player_home_id"], name: "index_home_furnitures_on_player_home_id"
   end
 
   create_table "player_homes", force: :cascade do |t|
@@ -39,7 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 20_231_012_162_532) do
     t.integer "home_value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["player_id_id"], name: "index_player_homes_on_player_id_id"
+    t.index ["player_id"], name: "index_player_homes_on_player_id"
   end
 
   create_table "players", force: :cascade do |t|
@@ -53,6 +52,6 @@ ActiveRecord::Schema[7.0].define(version: 20_231_012_162_532) do
   end
 
   add_foreign_key "home_furnitures", "furnitures"
-  add_foreign_key "home_furnitures", "homes"
-  add_foreign_key "player_homes", "player_ids"
+  add_foreign_key "home_furnitures", "player_homes"
+  add_foreign_key "player_homes", "players"
 end
