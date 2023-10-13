@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>About Us</title>
+</head>
+<body>
+  <h1>About Our Project</h1>
+
+  <h2>Details About Data</h2>
+  <p>
+    Using a CSV file we will aquire all furniture items Names, Variations, Patterns, Prices and
+    if the item is craftable (DIY) from the video game Animal Crossing New Horizons. The user
+    will have the ability to store said furniture items in a "Player Home". The specifics about said home
+    including the homes size and value will be aquired using Faker. The Player will also have data pulled from Faker
+    including Username, Gender, Email, Birthday and Bells (In game Currency).
+  </p>
+
+  <h2>Data Structure</h2>
+  <p>
+    The data will be structured in our application across 4 database tables:
+  </p>
+
+  <ul>
+    <li>
+      <strong>Players (Faker)</strong>
+      <ul>
+        <li>Id</li>
+        <li>Username: name of the user</li>
+        <li>Gender: gender of the user</li>
+        <li>Email: email of user</li>
+        <li>Birthday: birthday of user</li>
+        <li>Bells: amount of in-game currency held by the user</li>
+      </ul>
+    </li>
+    <li>
+      <strong>PlayerHome (Faker)</strong>
+      <ul>
+        <li>Id</li>
+        <li>Player_id: id of the user which owns the home</li>
+        <li>Size: size of the home</li>
+        <li>Home_value: total amount of value of furniture items within the home</li>
+      </ul>
+    </li>
+    <li>
+      <strong>HomeFurniture (Bridge table)</strong>
+      <ul>
+        <li>Home_id: id of home</li>
+        <li>Furniture_id: id of furniture item</li>
+        <li>Amount: amount of specified furniture item within the home</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Furniture (CSV)</strong>
+      <ul>
+        <li>Id</li>
+        <li>Name: name of furniture item</li>
+        <li>Variation: optional variation of furniture item</li>
+        <li>Pattern: optional pattern of furniture item</li>
+        <li>Price: optional price of furniture item</li>
+        <li>DIY: denotes if the item is craftable, or obtained through purchasing</li>
+      </ul>
+    </li>
+  </ul>
+</body>
+</html>
