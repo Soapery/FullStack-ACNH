@@ -22,10 +22,10 @@ furnitures = CSV.parse(csv_data, headers: true, encoding: "utf-8")
 furnitures.each do |row|
   # Replaces "NA" values with equivalent values
   furniture = Furniture.create(
-    name:      row["name"],
-    variation: row["variation"] == "NA" ? nil : row["variation"],
-    pattern:   row["pattern"] == "NA" ? nil : row["pattern"],
-    price:     row["price"] == "NA" ? 0 : row["price"].to_i,
+    name:      row["Name"],
+    variation: row["Variation"] == "NA" ? nil : row["Variation"],
+    pattern:   row["Pattern"] == "NA" ? nil : row["Pattern"],
+    price:     row["Sell"] == "NA" ? 0 : row["Sell"].to_i,
     diy:       row["DIY"] == "Yes"
   )
   puts furniture
