@@ -28,7 +28,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_12_162532) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["furniture_id"], name: "index_home_furnitures_on_furniture_id"
-    t.index ["player_home_id", "furniture_id"], name: "index_home_furnitures_on_player_home_id_and_furniture_id", unique: true
     t.index ["player_home_id"], name: "index_home_furnitures_on_player_home_id"
   end
 
