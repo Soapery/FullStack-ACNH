@@ -1,9 +1,9 @@
 require "csv"
 
 # Clearing existing records for re-seeding
-Furniture.delete_all
-PlayerHome.delete_all
 HomeFurniture.delete_all
+PlayerHome.delete_all
+Furniture.delete_all
 Player.delete_all
 
 # Resetting PK on tables
@@ -15,11 +15,10 @@ ActiveRecord::Base.connection.execute("DELETE FROM sqlite_sequence WHERE name='h
 # Retrieving CSV Data
 filename = Rails.root.join("db/housewares.csv")
 puts "Loading Furniture from the CSV file: #{filename}"
-csv_data = File.read(filename)
-furnitures = CSV.parse(csv_data, headers: true, encoding: "utf-8")
 
 # Populating Furniture table
-furnitures.each do |row|
+# Encoding in UTF-8 while removing BOM
+CSV.foreach(filename, 'r:BOM|UTF-8', headers: true) do |row|
   # Replaces "NA" values with equivalent values
   furniture = Furniture.create(
     name:      row["Name"],
