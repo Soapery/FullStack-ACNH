@@ -1,9 +1,9 @@
 require "csv"
 
 # Clearing existing records for re-seeding
-Furniture.delete_all
-PlayerHome.delete_all
 HomeFurniture.delete_all
+PlayerHome.delete_all
+Furniture.delete_all
 Player.delete_all
 
 # Resetting PK on tables
@@ -15,36 +15,19 @@ ActiveRecord::Base.connection.execute("DELETE FROM sqlite_sequence WHERE name='h
 # Retrieving CSV Data
 filename = Rails.root.join("db/housewares.csv")
 puts "Loading Furniture from the CSV file: #{filename}"
-csv_data = File.read(filename)
-furnitures = CSV.parse(csv_data, headers: true, encoding: "utf-8")
 
-# Iterate through each row in the CSV and create furniture records
-furnitures.each do |row|
-  puts "CSV row: #{row}"  # Print the entire row to check the "Name" values
-
-  # Handle "NA" values for price
-  price = row["Price"] == "NA" ? nil : row["Price"].to_i
-
-  # Map the CSV headers to the corresponding model attributes
-  furniture_params = {
-    name: row["Name"],
-    variation: row["Variation"],
-    pattern: row["Pattern"],
-    price: price,  # Set the price based on the CSV value or nil
-    diy: row["DIY"] == "Yes"
-    # ... add more mappings based on your model attributes
-  }
-
-  puts "Attempting to create furniture with name: #{furniture_params[:name]}"
-
-  # Create the furniture record
-  furniture = Furniture.new(furniture_params)
-
-  if furniture.save
-    puts "Furniture saved: #{furniture.name}"
-  else
-    puts "Failed to save furniture: #{furniture.name} - #{furniture.errors.full_messages.join(', ')}"
-  end
+# Populating Furniture table
+# Encoding in UTF-8 while removing BOM
+CSV.foreach(filename, 'r:BOM|UTF-8', headers: true) do |row|
+  # Replaces "NA" values with equivalent values
+  furniture = Furniture.create(
+    name:      row["Name"],
+    variation: row["Variation"] == "NA" ? nil : row["Variation"],
+    pattern:   row["Pattern"] == "NA" ? nil : row["Pattern"],
+    price:     row["Sell"] == "NA" ? 0 : row["Sell"].to_i,
+    diy:       row["DIY"] == "Yes"
+  )
+  puts furniture.inspect
 end
 
 # Populating Player, PlayerHome, and HomeFurniture tables
