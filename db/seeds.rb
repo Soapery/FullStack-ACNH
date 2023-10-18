@@ -18,17 +18,33 @@ puts "Loading Furniture from the CSV file: #{filename}"
 csv_data = File.read(filename)
 furnitures = CSV.parse(csv_data, headers: true, encoding: "utf-8")
 
-# Populating Furniture table
+# Iterate through each row in the CSV and create furniture records
 furnitures.each do |row|
-  # Replaces "NA" values with equivalent values
-  furniture = Furniture.create(
-    name:      row["Name"],
-    variation: row["Variation"] == "NA" ? nil : row["Variation"],
-    pattern:   row["Pattern"] == "NA" ? nil : row["Pattern"],
-    price:     row["Sell"] == "NA" ? 0 : row["Sell"].to_i,
-    diy:       row["DIY"] == "Yes"
-  )
-  puts furniture
+  puts "CSV row: #{row}"  # Print the entire row to check the "Name" values
+
+  # Handle "NA" values for price
+  price = row["Price"] == "NA" ? nil : row["Price"].to_i
+
+  # Map the CSV headers to the corresponding model attributes
+  furniture_params = {
+    name: row["Name"],
+    variation: row["Variation"],
+    pattern: row["Pattern"],
+    price: price,  # Set the price based on the CSV value or nil
+    diy: row["DIY"] == "Yes"
+    # ... add more mappings based on your model attributes
+  }
+
+  puts "Attempting to create furniture with name: #{furniture_params[:name]}"
+
+  # Create the furniture record
+  furniture = Furniture.new(furniture_params)
+
+  if furniture.save
+    puts "Furniture saved: #{furniture.name}"
+  else
+    puts "Failed to save furniture: #{furniture.name} - #{furniture.errors.full_messages.join(', ')}"
+  end
 end
 
 # Populating Player, PlayerHome, and HomeFurniture tables
