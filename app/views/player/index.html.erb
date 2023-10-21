@@ -1,0 +1,20 @@
+<h1>Players</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Bells</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= link_to player.username, player_path(player) %></td>
+        <td><%= player.email %></td>
+        <td><%= player.bells %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
