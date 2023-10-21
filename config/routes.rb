@@ -8,14 +8,14 @@ Rails.application.routes.draw do
   get 'about', to: 'about#index'
 
   # Player routes
-  resources :player, only: [:index, :show], path: 'player'
+  resources :players, only: [:index, :show], path: 'players'
 
   # PlayerHome routes
-  resources :player_home, only: [:index, :show], path: 'player_home'
+  resources :player_homes, only: [:index, :show], path: 'player_homes'
 
   # HomeFurniture routes
-  resources :home_furniture, only: [:index, :show], path: 'home_furniture'
+  resources :home_furnitures, only: [:index, :show], path: 'home_furnitures'
 
   # Furniture routes
-  resources :furniture, only: [:index, :show], path: 'furniture'
+  resources :furnitures, only: [:index, :show], path: 'furnitures'
 end

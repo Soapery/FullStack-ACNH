@@ -1,7 +1,0 @@
-class FurnitureController < ApplicationController
-  def index
-  end
-
-  def show
-  end
-end

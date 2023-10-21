@@ -1,13 +1,13 @@
 require "test_helper"
 
-class HomeFurnitureControllerTest < ActionDispatch::IntegrationTest
+class PlayerHomesControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get home_furniture_index_url
+    get player_homes_index_url
     assert_response :success
   end
 
   test "should get show" do
-    get home_furniture_show_url
+    get player_homes_show_url
     assert_response :success
   end
 end
