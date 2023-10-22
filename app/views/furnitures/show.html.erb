@@ -1,2 +1,11 @@
-<h1>Furnitures#show</h1>
-<p>Find me in app/views/furnitures/show.html.erb</p>
+<h1><%= @furniture.name %></h1>
+
+
+<ul>
+  <li>Variation: <%= @furniture.variation %></li>
+  <li>Pattern: <%= @furniture.pattern %></li>
+  <li>Price: <%= @furniture.price %></li>
+  <li>DIY: <%= @furniture.price %></li>
+  <li>Created: <%= @furniture.created_at %></li>
+  <li>Updated: <%= @furniture.updated_at %></li>
+</ul>

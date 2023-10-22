@@ -1,2 +1,10 @@
-<h1>PlayerHomes#show</h1>
-<p>Find me in app/views/player_homes/show.html.erb</p>
+<h1><%= @player_home.player.username %>'s Home</h1>
+
+
+<ul>
+  <li>Owner ID: <%= @player_home.player_id %></li>
+  <li>Size: <%= @player_home.size %></li>
+  <li>Home Value: <%= @player_home.home_value %></li>
+  <li>Created: <%= @player_home.created_at %></li>
+  <li>Updated: <%= @player_home.updated_at %></li>
+</ul>

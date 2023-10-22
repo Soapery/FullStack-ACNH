@@ -1,2 +1,20 @@
-<h1>PlayerHomes#index</h1>
-<p>Find me in app/views/player_homes/index.html.erb</p>
+<h1>Player Homes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Owner</th>
+      <th>Size</th>
+      <th>Home Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @player_homes.each do |player_home| %>
+      <tr>
+        <td><%= link_to player_home.player.username, player_path(player_home.player) %></td>
+        <td><%= player_home.size %></td>
+        <td><%= player_home.home_value %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
