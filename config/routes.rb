@@ -6,4 +6,16 @@ Rails.application.routes.draw do
 
   # Add a route for the "about" page
   get 'about', to: 'about#index'
+
+  # Player routes
+  resources :players, only: [:index, :show], path: 'players'
+
+  # PlayerHome routes
+  resources :player_homes, only: [:index, :show], path: 'player_homes'
+
+  # HomeFurniture routes
+  resources :home_furnitures, only: [:index, :show], path: 'home_furnitures'
+
+  # Furniture routes
+  resources :furnitures, only: [:index, :show], path: 'furnitures'
 end

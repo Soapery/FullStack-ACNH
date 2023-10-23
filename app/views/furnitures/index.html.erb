@@ -1,0 +1,24 @@
+<h1>Furniture Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Variation</th>
+      <th>Pattern</th>
+      <th>Price</th>
+      <th>DIY</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @furnitures.each do |furniture| %>
+      <tr>
+        <td><%= link_to furniture.name, furniture_path(furniture) %></td>
+        <td><%= furniture.variation %></td>
+        <td><%= furniture.pattern %></td>
+        <td><%= furniture.price %></td>
+        <td><%= furniture.diy %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
