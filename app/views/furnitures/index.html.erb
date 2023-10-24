@@ -1,5 +1,14 @@
 <h1>Furniture Items</h1>
 
+<%= form_tag(furnitures_path, method: :get, class: "search-form") do %>
+  <div class="field">
+    <%= text_field_tag :search, params[:search], placeholder: "Search furniture by name..." %>
+  </div>
+  <div class="actions">
+    <%= submit_tag "Search" %>
+  </div>
+<% end %>
+
 <table>
   <thead>
     <tr>
@@ -11,7 +20,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @furnitures.each do |furniture| %>
+    <% @furniture.each do |furniture| %>
       <tr>
         <td><%= link_to furniture.name, furniture_path(furniture) %></td>
         <td><%= furniture.variation %></td>

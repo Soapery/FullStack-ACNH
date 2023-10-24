@@ -1,6 +1,10 @@
 class FurnituresController < ApplicationController
   def index
-    @furnitures = Furniture.all
+    if params[:search]
+      @furniture = Furniture.where("name LIKE ?", "%#{params[:search]}%")
+    else
+      @furniture = Furniture.all
+    end
   end
 
   def show

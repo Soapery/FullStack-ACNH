@@ -1,6 +1,10 @@
 class PlayersController < ApplicationController
   def index
-    @players = Player.all
+    if params[:search]
+      @players = Player.where("username LIKE ?", "%#{params[:search]}%")
+    else
+      @players = Player.all
+    end
   end
 
   def show
