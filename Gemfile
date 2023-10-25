@@ -73,3 +73,8 @@ group :test do
   gem "selenium-webdriver"
 
 end
+
+gem "tailwindcss-rails", "~> 2.0"
+
+gem 'will_paginate', '~> 4.0.0'
+gem 'will_paginate-bootstrap'

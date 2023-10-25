@@ -1,19 +1,19 @@
 <h1>Player Homes</h1>
 
-<table>
-  <thead>
+<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+  <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
     <tr>
-      <th>Owner</th>
-      <th>Size</th>
-      <th>Home Value</th>
+      <th scope="col" class="px-6 py-3">Owner</th>
+      <th scope="col" class="px-6 py-3">Size</th>
+      <th scope="col" class="px-6 py-3">Home Value</th>
     </tr>
   </thead>
   <tbody>
     <% @player_homes.each do |player_home| %>
-      <tr>
-        <td><%= link_to player_home.player.username, player_path(player_home.player) %></td>
-        <td><%= player_home.size %></td>
-        <td><%= player_home.home_value %></td>
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"><%= link_to player_home.player.username, player_path(player_home.player), class: "md:hover:text-blue-700" %></td>
+        <td class="px-6 py-4"><%= player_home.size %></td>
+        <td class="px-6 py-4"><%= player_home.home_value %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,33 +1,45 @@
-<h1>Furniture Items</h1>
+<h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">Furniture Items</h1>
 
 <%= form_tag(furnitures_path, method: :get, class: "search-form") do %>
-  <div class="field">
-    <%= text_field_tag :search, params[:search], placeholder: "Search furniture by name..." %>
-  </div>
-  <div class="actions">
-    <%= submit_tag "Search" %>
+  <div class="relative">
+    <div class="field">
+      <%= text_field_tag :search, params[:search], placeholder: "Search furniture by name...", class: "block w-11/12 p-4 pl-10 mx-auto mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+    </div>
+    <div class="actions">
+      <%= submit_tag "Search", class: "text-white absolute right-20 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
+    </div>
   </div>
 <% end %>
 
-<table>
-  <thead>
+<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+  <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
     <tr>
-      <th>Name</th>
-      <th>Variation</th>
-      <th>Pattern</th>
-      <th>Price</th>
-      <th>DIY</th>
+      <th scope="col" class="px-6 py-3">Name</th>
+      <th scope="col" class="px-6 py-3">Variation</th>
+      <th scope="col" class="px-6 py-3">Pattern</th>
+      <th scope="col" class="px-6 py-3">Price</th>
+      <th scope="col" class="px-6 py-3">DIY</th>
     </tr>
   </thead>
   <tbody>
     <% @furniture.each do |furniture| %>
-      <tr>
-        <td><%= link_to furniture.name, furniture_path(furniture) %></td>
-        <td><%= furniture.variation %></td>
-        <td><%= furniture.pattern %></td>
-        <td><%= furniture.price %></td>
-        <td><%= furniture.diy %></td>
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"><%= link_to furniture.name, furniture_path(furniture), class: "md:hover:text-blue-700" %></td>
+        <% if (furniture.variation != nil) then %>
+          <td class="px-6 py-4"><%= furniture.variation %></td>
+        <% else %>
+          <td class="px-6 py-4">N/A</td>
+        <% end %>
+        <% if (furniture.pattern != nil) then %>
+          <td class="px-6 py-4"><%= furniture.pattern %></td>
+        <% else %>
+          <td class="px-6 py-4">N/A</td>
+        <% end %>
+        <td class="px-6 py-4"><%= furniture.price %></td>
+        <td class="px-6 py-4"><%= furniture.diy %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= will_paginate @furniture, class: 'pagination' %>

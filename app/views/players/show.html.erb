@@ -1,11 +1,24 @@
 <h1><%= @player.username %></h1>
 
+<div class="grid grid-cols-2">
+  <div>
+    <h2>Player Info</h2>
+    <ul>
+      <li>Gender: <%= @player.gender %></li>
+      <li>Email: <%= @player.email %></li>
+      <li>Birthday: <%= @player.birthday %></li>
+      <li>Bells: <%= @player.bells %></li>
+      <li>Created: <%= @player.created_at %></li>
+      <li>Updated: <%= @player.updated_at %></li>
+    </ul>
+  </div>
+  <div>
+    <h2><%= @player.username %>'s <%= link_to "House", player_home_path(@player) %></h2>
+    <ul>
+      <li>Size: <%= @player.player_home.size %></li>
+      <li>Value: <%= @player.player_home.home_value %></li>
+    </ul>
+  </div>
+</div>
 
-<ul>
-  <li>Gender: <%= @player.gender %></li>
-  <li>Email: <%= @player.email %></li>
-  <li>Birthday: <%= @player.birthday %></li>
-  <li>Bells: <%= @player.bells %></li>
-  <li>Created: <%= @player.created_at %></li>
-  <li>Updated: <%= @player.updated_at %></li>
-</ul>
+
