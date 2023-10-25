@@ -10,20 +10,20 @@
   </div>
 <% end %>
 
-<table>
-  <thead>
+<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+  <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
     <tr>
-      <th>Username</th>
-      <th>Email</th>
-      <th>Bells</th>
+      <th scope="col" class="px-6 py-3">Username</th>
+      <th scope="col" class="px-6 py-3">Email</th>
+      <th scope="col" class="px-6 py-3">Bells</th>
     </tr>
   </thead>
   <tbody>
     <% @players.each do |player| %>
-      <tr>
-        <td><%= link_to player.username, player_path(player) %></td>
-        <td><%= player.email %></td>
-        <td><%= player.bells %></td>
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"><%= link_to player.username, player_path(player), class: "md:hover:text-blue-700" %></td>
+        <td class="px-6 py-4"><%= player.email %></td>
+        <td class="px-6 py-4"><%= player.bells %></td>
       </tr>
     <% end %>
   </tbody>

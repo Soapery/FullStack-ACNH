@@ -9,24 +9,32 @@
   </div>
 <% end %>
 
-<table>
-  <thead>
+<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+  <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
     <tr>
-      <th>Name</th>
-      <th>Variation</th>
-      <th>Pattern</th>
-      <th>Price</th>
-      <th>DIY</th>
+      <th scope="col" class="px-6 py-3">Name</th>
+      <th scope="col" class="px-6 py-3">Variation</th>
+      <th scope="col" class="px-6 py-3">Pattern</th>
+      <th scope="col" class="px-6 py-3">Price</th>
+      <th scope="col" class="px-6 py-3">DIY</th>
     </tr>
   </thead>
   <tbody>
     <% @furniture.each do |furniture| %>
-      <tr>
-        <td><%= link_to furniture.name, furniture_path(furniture) %></td>
-        <td><%= furniture.variation %></td>
-        <td><%= furniture.pattern %></td>
-        <td><%= furniture.price %></td>
-        <td><%= furniture.diy %></td>
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"><%= link_to furniture.name, furniture_path(furniture), class: "md:hover:text-blue-700" %></td>
+        <% if (furniture.variation != nil) then %>
+          <td class="px-6 py-4"><%= furniture.variation %></td>
+        <% else %>
+          <td class="px-6 py-4">N/A</td>
+        <% end %>
+        <% if (furniture.pattern != nil) then %>
+          <td class="px-6 py-4"><%= furniture.pattern %></td>
+        <% else %>
+          <td class="px-6 py-4">N/A</td>
+        <% end %>
+        <td class="px-6 py-4"><%= furniture.price %></td>
+        <td class="px-6 py-4"><%= furniture.diy %></td>
       </tr>
     <% end %>
   </tbody>
