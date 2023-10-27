@@ -1,9 +1,9 @@
 class FurnituresController < ApplicationController
   def index
     if params[:search]
-      @furniture = Furniture.where("name LIKE ?", "%#{params[:search]}%")
+      @furniture = Furniture.where("name LIKE ?", "%#{params[:search]}%").paginate(page: params[:page], per_page: 10)
     else
-      @furniture = Furniture.all
+      @furniture = Furniture.paginate(page: params[:page], per_page: 25)
     end
   end
 
